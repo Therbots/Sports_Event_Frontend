@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom'
 import React, { Component } from 'react';
 import Registration from './components/Registration';
+import Login from './components/Login';
+import LandingPage from './components/LandingPage';
+import jwt_decode from "jwt-decode";
 
 export default class App extends Component {
 
