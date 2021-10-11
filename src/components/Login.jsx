@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router';
+import { Redirect, Switch, Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import LandingPage from './LandingPage';
 
 class Login extends Component {
     state = {
         
         userName: '',
-        password: '',       
+        password: '',
+   
             
     }
 
@@ -14,10 +17,11 @@ class Login extends Component {
 
 
        
-       const jwt = localStorage.getItem('token');
-       let response = await axios.post('http://127.0.0.1:8000/api/auth/login/', {userName:this.state.userName,password:this.state.password })
-          
-            localStorage.setItem('token' , response.data.token);
+
+       let response = await axios.post('http://127.0.0.1:8000/api/auth/login/', {username: this.state.userName, password: this.state.password })
+          console.log("data", response.data)
+            localStorage.setItem('access', response.data.access);
+            localStorage.setItem('refresh', response.data.refresh);
             this.setState({loggedIn : true});
             
             
@@ -44,6 +48,10 @@ class Login extends Component {
 
         }
         return(
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/"  render={props => <LandingPage {...props} username={this.state.username}/>}/>
+                </Switch>
             <React.Fragment>
             <form onSubmit={(event) => this.handleSubmit(event)}>
                
@@ -55,6 +63,7 @@ class Login extends Component {
                 <button type="submit">Login</button>
             </form>
             </React.Fragment>
+            </BrowserRouter>
         );
     }
 }

@@ -16,13 +16,9 @@ class RegisterUser extends Component {
     registerUser =async () =>{
 
       
-       let response = await axios.post('http://127.0.0.1:8000/api/auth/register/', {firstName:this.state.firstName,lastName:this.state.lastName,userName:this.state.userName,email:this.state.email,password:this.state.password})
+       let response = await axios.post('http://127.0.0.1:8000/api/auth/register/', {first_name: this.state.firstName, last_name: this.state.lastName, username: this.state.userName, email: this.state.email, password: this.state.password})
         
-             console.log(response);
-             localStorage.setItem('token' , response.token);
-             const tokenFromStorage = localStorage.getItem('token');
 
-            console.log(tokenFromStorage);
 
             window.location = "/";
      
@@ -45,7 +41,7 @@ class RegisterUser extends Component {
     render(){
         return(
             <React.Fragment>
-            <form onSubmit={(event) => this.handleSubmit(event)} className="container">
+            <form onSubmit={(event) => this.handleSubmit(event)}>
                 <label>First Name</label>
                 <input type="text" name="firstName"onChange={this.handleChange} value={this.state.firstName}/>
                 <label>Last Name</label>
