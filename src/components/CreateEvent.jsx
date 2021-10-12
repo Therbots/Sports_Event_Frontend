@@ -9,14 +9,15 @@ class CreateEvent extends Component {
             location: '',
             numberOfPLayers: 0,
             skillLevel: '',
-            competitivenessLevel: ''
+            competitivenessLevel: '',
+            sportId: 0
          }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         const access = localStorage.getItem('access');
-        axios.post('http://127.0.0.1:8000/api/sports_events/', {date_time: this.state.dateTime, location: this.state.location, number_of_players: this.state.numberOfPLayers, skill_level: this.state.skillLevel, competitiveness_level: this.state.competitivenessLevel}, { headers: {Authorization: 'Bearer ' + access}})
+        axios.post('http://127.0.0.1:8000/api/sports_events/', {sport: this.state.sportId, date_time: this.state.dateTime, location: this.state.location, number_of_players: this.state.numberOfPLayers, skill_level: this.state.skillLevel, competitiveness_level: this.state.competitivenessLevel}, { headers: {Authorization: 'Bearer ' + access}})
     }
 
     handleChange = (event) => {
