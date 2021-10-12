@@ -75,6 +75,7 @@ export default class App extends Component {
                 <Route exact path="/home"  component={Home}/>
                 <Route exact path="/createprofile"  render={props => <CreateProfile {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
                 <Route exact path="/createevent"  component={CreateEvent}/>
+                <Route exact path="/map"  component={Map}/>
               </Switch>
             </div>
           </BrowserRouter>
