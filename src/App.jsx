@@ -9,19 +9,18 @@ import Home from './components/Home';
 import CreateProfile from './components/CreateProfile';
 import axios from 'axios';
 import CreateEvent from './components/CreateEvent';
+import Profile from './components/Profile';
 
 export default class App extends Component {
 
     state= {
         user:{},
-        profile: {}
   
      };
     
     
      
     componentDidMount() {
-      this.profileCreated()
 
       
         const jwt = localStorage.getItem('access');
@@ -44,20 +43,13 @@ export default class App extends Component {
                 localStorage.setItem('access', response.data.access)
         }
 
-        profileCreated = async () => {
-          const access = localStorage.getItem('access')
-            const userId = this.state.user.user_Id
-            let response = await axios.get('http://127.0.0.1:8000/api/profiles/', { headers: {Authorization: 'Bearer ' + access}})
-            this.setState({
-                profile: response.data
-            })
-        }
+ 
+
         
   
     render() { 
         console.log("token", this.state.user)
-        console.log("profile", this.state.profile)
-      if (this.state.user === {} && this.state.profile === {}) {
+      if (this.state.user === {} && this.state.profile === []) {
         return (
           <React.Fragment>
             <h1>Loading...</h1>
@@ -76,6 +68,7 @@ export default class App extends Component {
                 <Route exact path="/createprofile"  render={props => <CreateProfile {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
                 <Route exact path="/createevent"  component={CreateEvent}/>
                 <Route exact path="/map"  component={Map}/>
+                <Route exact path="/profile"  component={Profile}/>
               </Switch>
             </div>
           </BrowserRouter>
