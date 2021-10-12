@@ -31,6 +31,7 @@ import { Link } from 'react-router-dom';
                     <ul>
                     <Link to='/createprofile' > <li> Create Profile </li> </Link>
                     <Link to='/home' >  <li> Home </li> </Link> 
+                    <Link to='/createevent' >  <li> Create Event </li> </Link>
                     <Link to='/' onClick={()=> this.handleLogout()}>  <li> Logout </li> </Link>
                     </ul>
                 </nav>

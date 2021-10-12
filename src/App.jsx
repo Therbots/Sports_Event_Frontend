@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import CreateProfile from './components/CreateProfile';
 import axios from 'axios';
+import CreateEvent from './components/CreateEvent';
 
 export default class App extends Component {
 
@@ -73,6 +74,7 @@ export default class App extends Component {
                 <Route exact path="/login"  render={props => <Login {...props} profile={this.state.profile}/>}/>
                 <Route exact path="/home"  component={Home}/>
                 <Route exact path="/createprofile"  render={props => <CreateProfile {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
+                <Route exact path="/createevent"  component={CreateEvent}/>
               </Switch>
             </div>
           </BrowserRouter>
