@@ -19,6 +19,20 @@ class CreateEvent extends Component {
         axios.post('http://127.0.0.1:8000/api/sports_events/', {date_time: this.state.dateTime, location: this.state.location, number_of_players: this.state.numberOfPLayers, skill_level: this.state.skillLevel, competitiveness_level: this.state.competitivenessLevel}, { headers: {Authorization: 'Bearer ' + access}})
     }
 
+    handleChange = (event) => {
+        event.preventDefault();
+        this.setState ({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleChangeInt = (event) => {
+        event.preventDefault();
+        this.setState ({
+            [event.target.name]: parseInt(event.target.value)
+        })
+    }
+
     render() { 
         return ( 
             <React.Fragment>
@@ -32,7 +46,7 @@ class CreateEvent extends Component {
                     <input type="number" name="numberOfPlayers"onChange={this.handleChange} />
                     <div>
                         <label>Sport to Play</label>
-                    <select id="dropdown" name="sportId" onChange={this.handleChange}>
+                    <select id="dropdown" name="sportId" onChange={this.handleChangeInt}>
                         <option>Choose a sport</option>
                         <option value="1">Basketball</option>
                         <option value="2">Football</option>
@@ -59,7 +73,7 @@ class CreateEvent extends Component {
                         <option value="tough">Tough</option>
                     </select>
                     </div>        
-                    <button type="submit">Create</button>
+                    <button type="submit">Create Event</button>
                 </form>
             </React.Fragment>
          );

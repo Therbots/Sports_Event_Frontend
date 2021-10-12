@@ -11,7 +11,7 @@ class CreateProfile extends Component {
             city: '',
             state: '',
             zipcode: '',
-            sportId: '',
+            sportId: 0,
             skillLevel: '',
             image: null,
             user: {}
@@ -42,10 +42,16 @@ class CreateProfile extends Component {
             this.props.refreshToken()
         } else {
             axios.post('http://127.0.0.1:8000/api/profiles/', {name: this.state.name, image: this.state.image, street: this.state.street, city: this.state.city, state: this.state.state, zipcode: this.state.zipcode}, { headers: {Authorization: 'Bearer ' + access}});
-            axios.post('http://127.0.0.1:8000/api/favorite_sports/', {sport_id: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
-            axios.post('http://127.0.0.1:8000/api/skill_levels/', {level: this.state.skillLevel, sport_id: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
+            axios.post('http://127.0.0.1:8000/api/favorite_sports/', {sport: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
+            axios.post('http://127.0.0.1:8000/api/skill_levels/', {level: this.state.skillLevel, sport: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
         }
     };
+
+    handleChangeInt = (event) => {
+        this.setState ({
+            [event.target.name]: parseInt(event.target.value)
+        })
+    }
 
 
     render() { 
@@ -69,7 +75,7 @@ class CreateProfile extends Component {
                     <input type="number" name="zipcode"onChange={this.handleChange} />
                     <div>
                         <label>Favorite Sport</label>
-                    <select id="dropdown" name="sportId" onChange={this.handleChange}>
+                    <select id="number" name="sportId" onChange={this.handleChangeInt}>
                         <option>Choose a sport</option>
                         <option value="1">Basketball</option>
                         <option value="2">Football</option>
@@ -89,7 +95,7 @@ class CreateProfile extends Component {
                         <option value="Advance">Advance</option>
                     </select>
                     </div>        
-                    <button type="submit">Register</button>
+                    <button type="submit">Create Profile</button>
                 </form>
             </React.Fragment>
          );
