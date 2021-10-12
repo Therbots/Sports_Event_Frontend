@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect, Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import LandingPage from './LandingPage';
+
 
 class Login extends Component {
     state = {
@@ -37,16 +37,14 @@ class Login extends Component {
         event.preventDefault(); 
         this.loginUser();
         
-    };
-   
-        
+    };   
 
     render(){
         if (this.state.loggedIn){
-            return <Redirect to={'/home'}  {...window.location = "/"} />
+            return <Redirect to={'/home'} {...window.location = "/"}/>
            
 
-        }
+        } else {
         return(
             <React.Fragment>
             <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -60,6 +58,7 @@ class Login extends Component {
             </form>
             </React.Fragment>
         );
+        }
     }
 }
 export default Login;

@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
     }
     render() {      
-        if(this.props.user.user_id == null){
+        if (this.props.user.user_id == null) {
             return (
 
               <nav>
@@ -24,11 +24,12 @@ import { Link } from 'react-router-dom';
               </nav>              
             )
 
-        }else{
+        } else {
         
             return (
                 <nav>
                     <ul>
+                    <Link to='/createprofile' > <li> Create Profile </li> </Link>
                     <Link to='/home' >  <li> Home </li> </Link> 
                     <Link to='/' onClick={()=> this.handleLogout()}>  <li> Logout </li> </Link>
                     </ul>

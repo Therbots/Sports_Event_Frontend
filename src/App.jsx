@@ -12,14 +12,16 @@ import axios from 'axios';
 export default class App extends Component {
 
     state= {
-        user:{}
+        user:{},
+        profile: {}
   
      };
     
     
      
     componentDidMount() {
-      
+      this.profileCreated()
+
       
         const jwt = localStorage.getItem('access');
         try{
@@ -35,15 +37,26 @@ export default class App extends Component {
         }
 
         refreshToken() {
+          localStorage.removeItem('access')
             const refresh = localStorage.getItem('refresh')
-                let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', { headers: {Authorization: 'Bearer' + refresh}})
+                let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', refresh)
                 localStorage.setItem('access', response.data.access)
+        }
+
+        profileCreated = async () => {
+          const access = localStorage.getItem('access')
+            const userId = this.state.user.user_Id
+            let response = await axios.get('http://127.0.0.1:8000/api/profiles/', { headers: {Authorization: 'Bearer ' + access}})
+            this.setState({
+                profile: response.data
+            })
         }
         
   
     render() { 
         console.log("token", this.state.user)
-      if (this.state.user === {}) {
+        console.log("profile", this.state.profile)
+      if (this.state.user === {} && this.state.profile === {}) {
         return (
           <React.Fragment>
             <h1>Loading...</h1>
@@ -53,11 +66,11 @@ export default class App extends Component {
           return (
           <BrowserRouter>
             <div>
-              <NavBar user = {this.state.user}/>
+              <NavBar user = {this.state.user} profile={this.state.profile}/>
               <Switch>
                 <Route exact path="/"  render={props => <LandingPage {...props} user={this.state.user}/>}/>
                 <Route exact path="/registration"  component={Registration}/>
-                <Route exact path="/login"  component={Login}/>
+                <Route exact path="/login"  render={props => <Login {...props} profile={this.state.profile}/>}/>
                 <Route exact path="/home"  component={Home}/>
                 <Route exact path="/createprofile"  render={props => <CreateProfile {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
               </Switch>
