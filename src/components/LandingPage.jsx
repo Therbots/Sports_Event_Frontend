@@ -12,7 +12,7 @@ export default class LandingPage extends Component{
                 )
             }else{
                 return(
-                    <h3> Welcome to Pick-up Game {this.props.username}</h3>
+                    <h3> Welcome to Pick-up Game </h3>
     
                 )
 

@@ -6,6 +6,8 @@ import LandingPage from './components/LandingPage';
 import jwt_decode from "jwt-decode";
 import NavBar from './components/NavBar';
 import Home from './components/Home';
+import CreateProfile from './components/CreateProfile';
+import axios from 'axios';
 
 export default class App extends Component {
 
@@ -14,7 +16,7 @@ export default class App extends Component {
   
      };
     
-  
+    
      
     componentDidMount() {
       
@@ -30,6 +32,12 @@ export default class App extends Component {
                 }catch {
            
          }
+        }
+
+        refreshToken() {
+            const refresh = localStorage.getItem('refresh')
+                let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', { headers: {Authorization: 'Bearer' + refresh}})
+                localStorage.setItem('access', response.data.access)
         }
         
   
@@ -51,6 +59,7 @@ export default class App extends Component {
                 <Route exact path="/registration"  component={Registration}/>
                 <Route exact path="/login"  component={Login}/>
                 <Route exact path="/home"  component={Home}/>
+                <Route exact path="/createprofile"  render={props => <CreateProfile {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
               </Switch>
             </div>
           </BrowserRouter>

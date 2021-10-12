@@ -48,10 +48,6 @@ class Login extends Component {
 
         }
         return(
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/"  render={props => <LandingPage {...props} username={this.state.username}/>}/>
-                </Switch>
             <React.Fragment>
             <form onSubmit={(event) => this.handleSubmit(event)}>
                
@@ -63,7 +59,6 @@ class Login extends Component {
                 <button type="submit">Login</button>
             </form>
             </React.Fragment>
-            </BrowserRouter>
         );
     }
 }
