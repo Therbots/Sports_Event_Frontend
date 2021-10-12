@@ -7,22 +7,14 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            events: [],
             profile: []
          }
     }
 
     componentDidMount () {
-        this.getEvents()
         this.profileCreated()
     }
 
-    getEvents = async () => {
-        let response = await axios.get('http://127.0.0.1:8000/api/sports_events/all/');
-        this.setState ({
-            events: response.data
-        })
-    }
 
     profileCreated = async () => {
         const access = localStorage.getItem('access')
