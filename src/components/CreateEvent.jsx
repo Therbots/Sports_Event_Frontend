@@ -42,7 +42,7 @@ class CreateEvent extends Component {
                     <label>Date and Time</label>
                     <input type="datetime-local" name="dateTime"onChange={this.handleChange} />
                     <label>Location</label>
-                    <input type="text" name="location"onChange={this.handleChange} />
+                    <input type="text" placeholder="Enter street, city, state address" name="location"onChange={this.handleChange} />
                     <label>Number of Players</label>
                     <input type="number" name="numberOfPlayers"onChange={this.handleChange} />
                     <div>
