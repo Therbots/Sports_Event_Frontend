@@ -29,7 +29,7 @@ import { Link } from 'react-router-dom';
             return (
                 <nav>
                     <ul>
-                    <Link to='/createprofile' > <li> Create Profile </li> </Link>
+                    <Link to='/createprofile' > <li> Create/Update Profile </li> </Link>
                     <Link to='/home' >  <li> Home </li> </Link> 
                     <Link to='/createevent' >  <li> Create Event </li> </Link>
                     <Link to='/' onClick={()=> this.handleLogout()}>  <li> Logout </li> </Link>

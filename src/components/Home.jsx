@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
 import Profile from './Profile';
+import EventTable from './EventTable';
 
 class Home extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class Home extends Component {
                     <h1>Hello World!</h1>
                     <Profile profile={this.state.profile}/>
                     <Map />
+                    <EventTable />
             </React.Fragment>
          );
         }

@@ -10,6 +10,7 @@ import CreateProfile from './components/CreateProfile';
 import axios from 'axios';
 import CreateEvent from './components/CreateEvent';
 import Profile from './components/Profile';
+import EventTable from './components/EventTable';
 
 export default class App extends Component {
 
@@ -69,6 +70,7 @@ export default class App extends Component {
                 <Route exact path="/createevent"  component={CreateEvent}/>
                 <Route exact path="/map"  component={Map}/>
                 <Route exact path="/profile"  component={Profile}/>
+                <Route exact path="/eventtable"  component={EventTable}/>
               </Switch>
             </div>
           </BrowserRouter>
