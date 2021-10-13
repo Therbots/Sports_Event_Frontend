@@ -40,7 +40,7 @@ export default class App extends Component {
         refreshToken() {
           localStorage.removeItem('access')
             const refresh = localStorage.getItem('refresh')
-                let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', refresh)
+                let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', { headers: {Authorization: 'Bearer ' + refresh}})
                 localStorage.setItem('access', response.data.access)
         }
 

@@ -7,7 +7,7 @@ class CreateEvent extends Component {
         this.state = { 
             dateTime: '',
             location: '',
-            numberOfPLayers: 0,
+            numberOfPlayers: 0,
             skillLevel: '',
             competitivenessLevel: '',
             sportId: 0

@@ -16,6 +16,13 @@ class EventTable extends Component {
          })
     }
 
+    handleClick = (event) => {
+        console.log("clicked")
+        console.log("event", event)
+        const access = localStorage.getItem('access');
+        axios.post('http://127.0.0.1:8000/api/attending_athletes/', {sports_event: event}, { headers: {Authorization: 'Bearer ' + access}})
+    }
+
     componentDidMount () {
         this.getEvents()
     }
@@ -40,6 +47,7 @@ class EventTable extends Component {
                             <td>{item.number_of_players}</td>
                             <td>{item.skill_level}</td>
                             <td>{item.competitiveness_level}</td>
+                            <button type="button" onClick={() => this.handleClick(item.id)}>Join</button>
                         </tr>
                         ))}
                 </tbody>
