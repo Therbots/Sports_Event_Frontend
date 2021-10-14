@@ -27,7 +27,9 @@ class EventTable extends Component {
         this.getEvents()
     }
 
+
     render() { 
+        console.log("events", this.state.events)
         if (this.state.events === []) {
             return (
                 <h1>Loading...</h1>

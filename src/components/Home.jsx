@@ -5,12 +5,14 @@ import Profile from './Profile';
 import EventTable from './EventTable';
 import jwt_decode from "jwt-decode";
 
+
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             profile: [],
-            user: {}
+            user: {},
+            events: [],
          }
     }
 
@@ -26,8 +28,13 @@ class Home extends Component {
          }
         }
 
-
-
+        getEvents = async () => {
+            let response = await axios.get('http://127.0.0.1:8000/api/sports_events/all/');
+            this.setState ({
+               events: response.data
+            })
+       }   
+        
     profileCreated = async () => {
         const access = localStorage.getItem('access')
         if (Date.now() >= this.state.user.exp * 1000) {
@@ -41,7 +48,8 @@ class Home extends Component {
       }
 
     render() { 
-        if (this.state.profile === []) {
+        console.log("profile",this.state.profile)
+        if (this.state.profile.length === 0 && this.state.events.length === 0) {
             return (
                 <h1>Loading...</h1>
             )
@@ -50,8 +58,8 @@ class Home extends Component {
             <React.Fragment>
                     <h1>Hello World!</h1>
                     <Profile profile={this.state.profile}/>
-                    <Map />
-                    <EventTable user={this.state.user}/>
+                    <Map profile={this.state.profile}/>
+                    <EventTable user={this.state.user} eventDetails={this.handleEventDetails}/>
             </React.Fragment>
          );
         }
