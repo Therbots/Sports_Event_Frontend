@@ -5,6 +5,7 @@ class CreateEvent extends Component {
     constructor(props) {
         super(props);
         this.state = { 
+            name: '',
             dateTime: '',
             location: '',
             numberOfPlayers: 0,
@@ -17,7 +18,7 @@ class CreateEvent extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const access = localStorage.getItem('access');
-        axios.post('http://127.0.0.1:8000/api/sports_events/', {sport: this.state.sportId, date_time: this.state.dateTime, location: this.state.location, number_of_players: this.state.numberOfPLayers, skill_level: this.state.skillLevel, competitiveness_level: this.state.competitivenessLevel}, { headers: {Authorization: 'Bearer ' + access}})
+        axios.post('http://127.0.0.1:8000/api/sports_events/', {sport: this.state.sportId, name: this.state.name, date_time: this.state.dateTime, location: this.state.location, number_of_players: this.state.numberOfPLayers, skill_level: this.state.skillLevel, competitiveness_level: this.state.competitivenessLevel}, { headers: {Authorization: 'Bearer ' + access}})
     }
 
     handleChange = (event) => {
@@ -39,6 +40,8 @@ class CreateEvent extends Component {
             <React.Fragment>
                 <h1>Create Your Profile</h1>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
+                    <label>Event Name</label>
+                    <input type="text" name="name"onChange={this.handleChange} />
                     <label>Date and Time</label>
                     <input type="datetime-local" name="dateTime"onChange={this.handleChange} />
                     <label>Location</label>

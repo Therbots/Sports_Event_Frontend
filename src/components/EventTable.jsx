@@ -43,6 +43,7 @@ class EventTable extends Component {
                 <tbody>
                     {this.state.events.map((item =>
                         <tr key={item.id}>
+                            <td>{item.name}</td>
                             <td>{item.date_time}</td>
                             <td>{item.sport}</td>
                             <td>{item.location}</td>
