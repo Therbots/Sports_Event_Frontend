@@ -57,10 +57,9 @@ class Home extends Component {
         } else {
         return ( 
             <React.Fragment>
-                    <h1>Hello World!</h1>
                     <Profile profile={this.state.profile}/>
                     <Map profile={this.state.profile} events={this.state.events}/>
-                    <EventTable user={this.state.user} eventDetails={this.handleEventDetails}/>
+                    <EventTable user={this.state.user} events={this.state.events}/>
             </React.Fragment>
          );
         }

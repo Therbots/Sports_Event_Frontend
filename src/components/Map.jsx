@@ -88,33 +88,6 @@ export class MapContainer extends Component {
       let myLng = profile.lng;
       console.log("DD", this.state.eventMarkers)
       
-
-
-
-      // function callBack (response, status) {
-      //   console.log("RR", response.rows[0])
-      //   if (status == 'OK') {
-      //     let origins = response.originAddresses;
-      //     let destinations = response.destinationAddresses;
-      //     for (let i = 0; i < origins.length; i++) {
-      //       let results = response.rows[i].elements;
-      //       for (let j = 0; j < results.length; j++) {
-      //         let element = results[j];
-      //         let distance = element.distance.text;
-      //         let duration = element.duration.text;
-      //         let from = origins[i];
-      //         let to = destinations[j];
-      //         console.log("DD", distance)
-      //       }
-      //     }
-      //   }
-      // }
-    
-
-       
-
-     
-    
     return(
       <Map
         google={this.props.google}

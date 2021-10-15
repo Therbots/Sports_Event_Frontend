@@ -11,6 +11,7 @@ import axios from 'axios';
 import CreateEvent from './components/CreateEvent';
 import Profile from './components/Profile';
 import EventTable from './components/EventTable';
+import MessageBoard from './components/MessageBoard';
 
 export default class App extends Component {
 
@@ -71,6 +72,7 @@ export default class App extends Component {
                 <Route exact path="/map"  component={Map}/>
                 <Route exact path="/profile"  component={Profile}/>
                 <Route exact path="/eventtable"  component={EventTable}/>
+                <Route exact path="/messageboard"  component={MessageBoard}/>
               </Switch>
             </div>
           </BrowserRouter>

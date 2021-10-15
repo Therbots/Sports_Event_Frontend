@@ -19,6 +19,7 @@ class CreateEvent extends Component {
         console.log("E", this.state)
         const access = localStorage.getItem('access');
         axios.post('http://127.0.0.1:8000/api/sports_events/', {sport: this.state.sportId, name: this.state.name, date_time: this.state.dateTime, location: this.state.location, number_of_players: this.state.numberOfPlayers, skill_level: this.state.skillLevel, competitiveness_level: this.state.competitivenessLevel}, { headers: {Authorization: 'Bearer ' + access}})
+        
     }
 
     handleChange = (event) => {
@@ -33,11 +34,6 @@ class CreateEvent extends Component {
         this.setState ({
             [event.target.name]: parseInt(event.target.value)
         })
-    }
-
-    handleClick = (event) => {
-        const access = localStorage.getItem('access');
-        axios.post('http://127.0.0.1:8000/api/event_message_board/', { headers: {Authorization: 'Bearer ' + access}})
     }
 
     render() { 
@@ -82,7 +78,7 @@ class CreateEvent extends Component {
                         <option value="tough">Tough</option>
                     </select>
                     </div>        
-                    <button type="submit" onClick={this.handleClick}>Create Event</button>
+                    <button type="submit">Create Event</button>
                 </form>
             </React.Fragment>
          );
