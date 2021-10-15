@@ -32,7 +32,6 @@ class RegisterUser extends Component {
         })
     };
     handleSubmit = (event) => {
-        event.preventDefault();
         this.registerUser();
     };
    
