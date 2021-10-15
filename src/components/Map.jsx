@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
-import axios from 'axios';
+
 
 const mapStyles = {
   width: '400px',
@@ -13,18 +13,17 @@ export class MapContainer extends Component {
     activeMarker: {},          
     selectedPlace: {},
     profile: [], 
+    eventMarkers: [],
+
+
+
   };
 
-  getProfile = async () => {
-    const access = localStorage.getItem('access')
-      let response = await axios.get('http://127.0.0.1:8000/api/profiles/', { headers: {Authorization: 'Bearer ' + access}})
-      this.setState({
-          profile: response.data
-      })
-    }
   
     componentDidMount() {
-      this.getProfile()
+      this.distance()
+
+
     }
 
   onMarkerClick = (props, marker, e) =>
@@ -43,17 +42,79 @@ export class MapContainer extends Component {
     }
   };
 
+  async distance () {
+    const google = window.google;
+    let profile = this.props.profile[0];
+    let myLat = profile.lat;
+    let myLng = profile.lng;
+    let service = new google.maps.DistanceMatrixService();
+    console.log('Props Events', this.props.events)
+    let eventMarkers = []
+     this.props.events.map((singleEvent) => {
+      service.getDistanceMatrix(
+        {
+          origins: [{lat: myLat, lng: myLng}],
+          destinations: [{lat: singleEvent.lat, lng: singleEvent.lng}],
+          travelMode: 'DRIVING',
+          unitSystem: google.maps.UnitSystem.IMPERIAL,
+        }, (response, status) => {
+
+          let customObject = {
+            'distanceResponse': response,
+            'event': singleEvent,
+          }
+          eventMarkers.push(customObject)
+        
+        });
+    })
+   
+      this.setState({
+        eventMarkers: eventMarkers
+      })
+  }
+
+  
+  
+
   render() {
-    console.log("PP", this.state.profile[0])
-    if (this.state.profile.length === 0) {
+    if (this.state.eventMarkers.length === 0) {
       return (
-        <h1>Loaidng...</h1>
+        <h1>Loading...</h1>
+
       )
     } else {
-      let profile = this.state.profile[0]
-      console.log("P", profile.lat)
+      let profile = this.props.profile[0]
       let myLat = profile.lat;
       let myLng = profile.lng;
+      console.log("DD", this.state.eventMarkers)
+      
+
+
+
+      // function callBack (response, status) {
+      //   console.log("RR", response.rows[0])
+      //   if (status == 'OK') {
+      //     let origins = response.originAddresses;
+      //     let destinations = response.destinationAddresses;
+      //     for (let i = 0; i < origins.length; i++) {
+      //       let results = response.rows[i].elements;
+      //       for (let j = 0; j < results.length; j++) {
+      //         let element = results[j];
+      //         let distance = element.distance.text;
+      //         let duration = element.duration.text;
+      //         let from = origins[i];
+      //         let to = destinations[j];
+      //         console.log("DD", distance)
+      //       }
+      //     }
+      //   }
+      // }
+    
+
+       
+
+     
+    
     return(
       <Map
         google={this.props.google}
@@ -65,10 +126,18 @@ export class MapContainer extends Component {
             lng: myLng
           }
         }
-      >
-      <Marker
+        >
+          {this.state.eventMarkers.map(marker => (
+            <Marker
+              onClick={this.onMarkerClick}
+              position={{ lat: marker.event.lat, lng: marker.event.lng }}
+              key={marker.event.id}
+              name={marker.event.name + "\n" + marker.event.date_time + "\n" + marker.distanceResponse.rows[0].elements[0].distance.text}
+              />
+          ))}
+        <Marker
           onClick={this.onMarkerClick}
-          name={'Your Current Location'}
+          name={'Your Home'}
         />
         <InfoWindow
           marker={this.state.activeMarker}

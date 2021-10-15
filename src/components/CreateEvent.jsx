@@ -47,7 +47,7 @@ class CreateEvent extends Component {
                     <label>Location</label>
                     <input type="text" placeholder="Enter street, city, state address" name="location"onChange={this.handleChange} />
                     <label>Number of Players</label>
-                    <input type="number" name="numberOfPlayers"onChange={this.handleChange} />
+                    <input type="number" name="numberOfPlayers"onChange={this.handleChangeInt} />
                     <div>
                         <label>Sport to Play</label>
                     <select id="dropdown" name="sportId" onChange={this.handleChangeInt}>

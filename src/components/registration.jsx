@@ -16,7 +16,7 @@ class RegisterUser extends Component {
     registerUser =async () =>{
 
       
-       let response = await axios.post('http://127.0.0.1:8000/api/auth/register/', {first_name: this.state.firstName, last_name: this.state.lastName, username: this.state.userName, email: this.state.email, password: this.state.password})
+       await axios.post('http://127.0.0.1:8000/api/auth/register/', {first_name: this.state.firstName, last_name: this.state.lastName, username: this.state.userName, email: this.state.email, password: this.state.password})
         
 
 

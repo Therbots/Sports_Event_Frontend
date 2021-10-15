@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect, Switch, Route } from 'react-router';
+import { Redirect } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 

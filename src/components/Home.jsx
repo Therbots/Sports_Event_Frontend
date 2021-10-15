@@ -18,6 +18,7 @@ class Home extends Component {
 
     componentDidMount () {
         this.profileCreated()
+        this.getEvents()
         const jwt = localStorage.getItem('access');
         try{
         const user = jwt_decode(jwt);  
@@ -58,7 +59,7 @@ class Home extends Component {
             <React.Fragment>
                     <h1>Hello World!</h1>
                     <Profile profile={this.state.profile}/>
-                    <Map profile={this.state.profile}/>
+                    <Map profile={this.state.profile} events={this.state.events}/>
                     <EventTable user={this.state.user} eventDetails={this.handleEventDetails}/>
             </React.Fragment>
          );
