@@ -13,6 +13,7 @@ import Profile from './components/Profile';
 import EventTable from './components/EventTable';
 import MessageBoard from './components/MessageBoard';
 import UserEvents from './components/UserEvents';
+import SearchEvents from './components/SearchEvents';
 
 export default class App extends Component {
 
@@ -75,6 +76,7 @@ export default class App extends Component {
                 <Route exact path="/eventtable"  component={EventTable}/>
                 <Route exact path="/messageboard"  component={MessageBoard}/>
                 <Route exact path="/userevents"  component={UserEvents}/>
+                <Route exact path="/searchevents"  component={SearchEvents}/>
               </Switch>
             </div>
           </BrowserRouter>
