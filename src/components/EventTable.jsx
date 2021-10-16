@@ -6,8 +6,13 @@ class EventTable extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            events: []
+            events: [],
+            searchField: ''
          }
+    }
+
+    componentDidMount () {
+        this.getEvents()
     }
 
     getEvents = async () => {
@@ -26,31 +31,45 @@ class EventTable extends Component {
 
 
     render() { 
+        if (this.state.events.length === 0) {
+            return (
+                <h1>Loading...</h1>
+            )
+        } else {
         return ( 
             <div>
                 <SearchBar />
-            <table>
+            <center>
+            <table className="table table-striped table-bordered table-hover">
                 <thead>
-                    <th>Sports Events</th>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date and Time</th>
+                        <th>Location</th>
+                        <th>Number of Desired Players</th>
+                        <th>Desired Skill Level</th>
+                        <th>Competitiveness Level</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {this.state.events.map((item =>
                         <tr key={item.id}>
                             <td>{item.name}</td>
                             <td>{item.date_time}</td>
-                            <td>{item.sport}</td>
                             <td>{item.location}</td>
                             <td>{item.number_of_players}</td>
                             <td>{item.skill_level}</td>
                             <td>{item.competitiveness_level}</td>
-                            <button type="button" onClick={() => handleClick(item.id)}>Join</button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.handleClick(item.id)}>Join</button>
                         </tr>
                         ))}
                 </tbody>
             </table>
+            </center>
             </div>
 
          );
+        }
     }
 }
  

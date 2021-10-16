@@ -1,10 +1,11 @@
 import React from 'react';
 
-function UserEvents () {
+function UserEvents (props) {
     return (
+        <center>
         <table>
             <tbody>
-                    {this.state.events.map((item =>
+                    {props.events.map((item =>
                         <tr key={item.id}>
                             <td>{item.name}</td>
                             <td>{item.date_time}</td>
@@ -13,11 +14,11 @@ function UserEvents () {
                             <td>{item.number_of_players}</td>
                             <td>{item.skill_level}</td>
                             <td>{item.competitiveness_level}</td>
-                            <button type="button" onClick={() => handleClick(item.id)}>Join</button>
                         </tr>
                         ))}
                 </tbody>
         </table>
+        </center>
     )
 }
 

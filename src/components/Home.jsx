@@ -20,6 +20,7 @@ class Home extends Component {
     componentDidMount () {
         this.profileCreated()
         this.getEvents()
+        this.getUserEvents()
         const jwt = localStorage.getItem('access');
         try{
         const user = jwt_decode(jwt);  
@@ -32,7 +33,7 @@ class Home extends Component {
 
         getUserEvents = async () => {
             const access = localStorage.getItem('access')
-            let response = await axios.get('http://127.0.0.1:8000/api/sports_events/');
+            let response = await axios.get('http://127.0.0.1:8000/api/sports_events/', { headers: {Authorization: 'Bearer ' + access}});
             this.setState ({
                userEvents: response.data
             })
@@ -68,6 +69,8 @@ class Home extends Component {
             <React.Fragment>
                     <Profile profile={this.state.profile}/>
                     <Map profile={this.state.profile} events={this.state.events}/>
+                    <br>
+                    </br>
                     <UserEvents events={this.state.userEvents} />
             </React.Fragment>
          );

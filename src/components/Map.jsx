@@ -77,12 +77,12 @@ export class MapContainer extends Component {
   
 
   render() {
-    if (this.state.eventMarkers.length === 0) {
-      return (
-        <h1>Loading...</h1>
+    // if (this.state.eventMarkers.length === 0) {
+    //   return (
+    //     <h1>Loading...</h1>
 
-      )
-    } else {
+    //   )
+    // } else {
       let profile = this.props.profile[0]
       let myLat = profile.lat;
       let myLng = profile.lng;
@@ -123,7 +123,7 @@ export class MapContainer extends Component {
         </InfoWindow>
       </Map>
     );
-    }
+    // }
   }
 }
 
