@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
 import Profile from './Profile';
-import EventTable from './EventTable';
 import jwt_decode from "jwt-decode";
+import UserEvents from './UserEvents';
 
 
 class Home extends Component {
@@ -13,6 +13,7 @@ class Home extends Component {
             profile: [],
             user: {},
             events: [],
+            userEvents: []
          }
     }
 
@@ -27,6 +28,14 @@ class Home extends Component {
             });                     
                 }catch {          
          }
+        }
+
+        getUserEvents = async () => {
+            const access = localStorage.getItem('access')
+            let response = await axios.get('http://127.0.0.1:8000/api/sports_events/');
+            this.setState ({
+               userEvents: response.data
+            })
         }
 
         getEvents = async () => {
@@ -59,7 +68,7 @@ class Home extends Component {
             <React.Fragment>
                     <Profile profile={this.state.profile}/>
                     <Map profile={this.state.profile} events={this.state.events}/>
-                    <EventTable user={this.state.user} events={this.state.events}/>
+                    <UserEvents events={this.state.userEvents} />
             </React.Fragment>
          );
         }

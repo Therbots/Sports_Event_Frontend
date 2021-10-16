@@ -1,28 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import SearchBar from './SearchBar';
 
-function EventTable (props) {
+class EventTable extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            events: []
+         }
+    }
 
-    const handleClick = async (event) => {
+    getEvents = async () => {
+        let response = await axios.get('http://127.0.0.1:8000/api/sports_events/all/');
+        this.setState ({
+           events: response.data
+        })
+   }   
+
+    handleClick = async (event) => {
         console.log("clicked")
         console.log("event", event)
         const access = localStorage.getItem('access');
         await axios.post('http://127.0.0.1:8000/api/attending_athletes/', {sports_event: event}, { headers: {Authorization: 'Bearer ' + access}})
     }
 
-    const createMessageBoard = async (event) => {
-        const access = localStorage.getItem('access');
-        await axios.post('http://127.0.0.1:8000/api/event_message_boards/', {sports_event: event}, { headers: {Authorization: 'Bearer ' + access}})
-    }
 
-
-    return (
-        <table>
+    render() { 
+        return ( 
+            <div>
+                <SearchBar />
+            <table>
                 <thead>
                     <th>Sports Events</th>
                 </thead>
                 <tbody>
-                    {props.events.map((item =>
+                    {this.state.events.map((item =>
                         <tr key={item.id}>
                             <td>{item.name}</td>
                             <td>{item.date_time}</td>
@@ -32,13 +44,14 @@ function EventTable (props) {
                             <td>{item.skill_level}</td>
                             <td>{item.competitiveness_level}</td>
                             <button type="button" onClick={() => handleClick(item.id)}>Join</button>
-                            <button type="button" onClick={() => createMessageBoard(item.id)}>Create Message Board</button>
-                            <button type="button">View Message Board</button>
                         </tr>
                         ))}
                 </tbody>
             </table>
-    );
-}
+            </div>
 
+         );
+    }
+}
+ 
 export default EventTable;
