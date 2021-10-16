@@ -58,7 +58,7 @@ class CreateProfile extends Component {
         console.log("profile", this.state)
         console.log("props", this.props.user)
         return ( 
-            <React.Fragment>
+            <div className="container">
                 <h1>Create Your Profile</h1>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <label>Profile Name</label>
@@ -97,7 +97,7 @@ class CreateProfile extends Component {
                     </div>        
                     <button type="submit">Create Profile</button>
                 </form>
-            </React.Fragment>
+            </div>
          );
     }
 }

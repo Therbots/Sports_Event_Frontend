@@ -1,0 +1,18 @@
+body {
+    background-color: transparent;
+    background-image: url(https://motionarray.imgix.net/preview-279485-UenCPR1wxc-high_0008.jpg);
+    color: antiquewhite;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 1px auto;
+    align-items: center;
+    border: 1em solid rgba(0, 0, 51, 0.356);
+    padding: 1em;
+    background-color: rgba(245, 245, 245, 0.664);
+
+    /* opacity: 0.5; */
+
+}

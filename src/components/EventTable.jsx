@@ -10,10 +10,12 @@ function EventTable (props) {
         await axios.post('http://127.0.0.1:8000/api/attending_athletes/', {sports_event: event}, { headers: {Authorization: 'Bearer ' + access}})
     }
 
+    
+
     return (
          <div>   
             <center>
-            <table className="table table-striped table-bordered table-hover">
+            <table className="table table-striped table-bordered table-hover table-dark">
                 <thead>
                     <tr>
                         <th>Event Name</th>

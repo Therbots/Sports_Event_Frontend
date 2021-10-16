@@ -38,8 +38,8 @@ class CreateEvent extends Component {
 
     render() { 
         return ( 
-            <React.Fragment>
-                <h1>Create Your Profile</h1>
+            <div className="container">
+                <h1>Create Your Event</h1>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <label>Event Name</label>
                     <input type="text" name="name"onChange={this.handleChange} />
@@ -80,7 +80,7 @@ class CreateEvent extends Component {
                     </div>        
                     <button type="submit">Create Event</button>
                 </form>
-            </React.Fragment>
+            </div>
          );
     }
 }
