@@ -3,8 +3,9 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 
 
 const mapStyles = {
-  width: '400px',
-  height: '400px'
+  width: '800px',
+  height: '400px',
+  padding: '5px'
 };
 
 export class MapContainer extends Component {
@@ -83,20 +84,22 @@ export class MapContainer extends Component {
 
     //   )
     // } else {
-      let profile = this.props.profile[0]
-      let myLat = profile.lat;
-      let myLng = profile.lng;
-      console.log("DD", this.state.eventMarkers)
+      // let profile = this.props.profile[0]
+      // let myLat = profile.lat;
+      // let myLng = profile.lng;
+      // console.log("DD", this.state.eventMarkers)
       
     return(
+      <div>
+      <center>
       <Map
         google={this.props.google}
         zoom={13}
         style={mapStyles}
         initialCenter={
           {
-            lat: myLat,
-            lng: myLng
+            lat: this.props.profile[0].lat,
+            lng: this.props.profile[0].lng
           }
         }
         >
@@ -122,6 +125,8 @@ export class MapContainer extends Component {
           </div>
         </InfoWindow>
       </Map>
+      </center>
+      </div>
     );
     // }
   }

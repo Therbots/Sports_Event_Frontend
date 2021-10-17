@@ -35,22 +35,33 @@ class CreateProfile extends Component {
         })
     };
 
-    handleSubmit = (event) => {
-        event.preventDefault();      
+    handleSubmit = (event) => {  
+        event.preventDefault() 
         const access = localStorage.getItem('access');
-        if (Date.now() >= this.state.user.exp * 1000) {
-            this.props.refreshToken()
-        } else {
-            axios.post('http://127.0.0.1:8000/api/profiles/', {name: this.state.name, image: this.state.image, street: this.state.street, city: this.state.city, state: this.state.state, zipcode: this.state.zipcode}, { headers: {Authorization: 'Bearer ' + access}});
+        let formData = new FormData();
+        formData.append('name', this.state.name);
+        formData.append('image', this.state.image[0]);
+        formData.append('street', this.state.street);
+        formData.append('city', this.state.city);
+        formData.append('state', this.state.state);
+        formData.append('zipcode', this.state.zipcode);       
+            axios.post('http://127.0.0.1:8000/api/profiles/', formData, { headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + access}});
             axios.post('http://127.0.0.1:8000/api/favorite_sports/', {sport: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
             axios.post('http://127.0.0.1:8000/api/skill_levels/', {level: this.state.skillLevel, sport: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
-        }
+        
     };
 
     handleChangeInt = (event) => {
         this.setState ({
             [event.target.name]: parseInt(event.target.value)
         })
+    }
+
+    handleChangeImage = (event) => {
+        this.setState ({
+            [event.target.name]: event.target.files
+        })
+        console.log("image", event.target.files)
     }
 
 
@@ -64,7 +75,7 @@ class CreateProfile extends Component {
                     <label>Profile Name</label>
                     <input type="text" name="name"onChange={this.handleChange} />
                     <label>Profile Image</label>
-                    <input type="file" name="image"onChange={this.handleChange} />
+                    <input type="file" accept="image/*" name="image"onChange={this.handleChangeImage} />
                     <label>Street you live on</label>
                     <input type="text" name="street"onChange={this.handleChange} />
                     <label>City</label>

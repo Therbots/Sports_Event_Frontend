@@ -32,6 +32,7 @@ class RegisterUser extends Component {
         })
     };
     handleSubmit = (event) => {
+        event.preventDefault()
         this.registerUser();
     };
    
@@ -40,6 +41,7 @@ class RegisterUser extends Component {
     render(){
         return(
             <React.Fragment>
+            <center>
             <form className="container" onSubmit={(event) => this.handleSubmit(event)}>
                 <label>First Name</label>
                 <input type="text" name="firstName"onChange={this.handleChange} value={this.state.firstName}/>
@@ -53,6 +55,7 @@ class RegisterUser extends Component {
                 <input type="text" name="password"onChange={this.handleChange} value={this.state.password}/>
                 <button type="submit">Register</button>
             </form>
+            </center>
             </React.Fragment>
         );
     }

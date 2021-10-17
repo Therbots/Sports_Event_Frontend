@@ -1,10 +1,12 @@
 import React from 'react';
+import './UserEvents.css'
 
 
 function UserEvents (props) {
 
 
     return (
+        <div>
         <center>
         <table>
             <thead>
@@ -24,6 +26,7 @@ function UserEvents (props) {
                 </tbody>
         </table>
         </center>
+        </div>
     )
 }
 
