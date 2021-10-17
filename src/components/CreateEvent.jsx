@@ -17,9 +17,13 @@ class CreateEvent extends Component {
 
     handleSubmit = (event) => {
         console.log("E", this.state)
+        
+        if (Date.now() >= this.props.user.exp * 1000) {
+            this.props.refreshToken()
+        } else {
         const access = localStorage.getItem('access');
         axios.post('http://127.0.0.1:8000/api/sports_events/', {sport: this.state.sportId, name: this.state.name, date_time: this.state.dateTime, location: this.state.location, number_of_players: this.state.numberOfPlayers, skill_level: this.state.skillLevel, competitiveness_level: this.state.competitivenessLevel}, { headers: {Authorization: 'Bearer ' + access}})
-        
+        }
     }
 
     handleChange = (event) => {

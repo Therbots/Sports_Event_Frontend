@@ -41,10 +41,10 @@ export default class App extends Component {
         }
 
         refreshToken() {
-          localStorage.removeItem('access')
             const refresh = localStorage.getItem('refresh')
-                let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', { headers: {Authorization: 'Bearer ' + refresh}})
+                let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', {refresh: refresh})
                 localStorage.setItem('access', response.data.access)
+                console.log("refresh", response.data)
         }
 
  
@@ -68,12 +68,12 @@ export default class App extends Component {
                 <Route exact path="/"  render={props => <LandingPage {...props} user={this.state.user}/>}/>
                 <Route exact path="/registration"  component={Registration}/>
                 <Route exact path="/login"  render={props => <Login {...props} profile={this.state.profile}/>}/>
-                <Route exact path="/home"  component={Home}/>
+                <Route exact path="/home"  render={props => <Home {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
                 <Route exact path="/createprofile"  render={props => <CreateProfile {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
-                <Route exact path="/createevent"  component={CreateEvent}/>
+                <Route exact path="/createevent"  render={props => <CreateEvent {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
                 <Route exact path="/map"  component={Map}/>
                 <Route exact path="/profile"  component={Profile}/>
-                <Route exact path="/eventtable"  component={EventTable}/>
+                <Route exact path="/eventtable"  render={props => <EventTable {...props} user={this.state.user} refreshToken={this.refreshToken}/>}/>
                 <Route exact path="/messageboard"  component={MessageBoard}/>
                 <Route exact path="/userevents"  component={UserEvents}/>
                 <Route exact path="/searchevents"  component={SearchEvents}/>

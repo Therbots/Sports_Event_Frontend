@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
 import Profile from './Profile';
-import jwt_decode from "jwt-decode";
 import UserEvents from './UserEvents';
 
 
@@ -11,7 +10,6 @@ class Home extends Component {
         super(props);
         this.state = { 
             profile: [],
-            user: {},
             events: [],
             userEvents: []
          }
@@ -21,22 +19,19 @@ class Home extends Component {
         this.profileCreated()
         this.getEvents()
         this.getUserEvents()
-        const jwt = localStorage.getItem('access');
-        try{
-        const user = jwt_decode(jwt);  
-            this.setState({
-              user: user  
-            });                     
-                }catch {          
-         }
-        }
+    }
 
         getUserEvents = async () => {
+            
+            if (Date.now() >= this.props.user.exp * 1000) {
+                this.props.refreshToken()
+            } else {
             const access = localStorage.getItem('access')
             let response = await axios.get('http://127.0.0.1:8000/api/sports_events/', { headers: {Authorization: 'Bearer ' + access}});
             this.setState ({
                userEvents: response.data
             })
+            }
         }
 
         getEvents = async () => {
@@ -47,10 +42,11 @@ class Home extends Component {
        }   
         
     profileCreated = async () => {
-        const access = localStorage.getItem('access')
-        if (Date.now() >= this.state.user.exp * 1000) {
+        
+        if (Date.now() >= this.props.user.exp * 1000) {
             this.props.refreshToken()
         } else {
+          const access = localStorage.getItem('access')
           let response = await axios.get('http://127.0.0.1:8000/api/profiles/', { headers: {Authorization: 'Bearer ' + access}})
           this.setState({
               profile: response.data

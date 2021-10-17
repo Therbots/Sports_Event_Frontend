@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 
 
 const mapStyles = {
-  width: '800px',
+  width: '600px',
   height: '400px',
   padding: '5px'
 };
@@ -78,6 +78,7 @@ export class MapContainer extends Component {
   
 
   render() {
+    console.log("PP",this.props.profile)
     // if (this.state.eventMarkers.length === 0) {
     //   return (
     //     <h1>Loading...</h1>

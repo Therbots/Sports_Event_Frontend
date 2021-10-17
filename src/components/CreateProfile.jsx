@@ -36,19 +36,24 @@ class CreateProfile extends Component {
     };
 
     handleSubmit = (event) => {  
-        event.preventDefault() 
-        const access = localStorage.getItem('access');
+        event.preventDefault()
         let formData = new FormData();
         formData.append('name', this.state.name);
         formData.append('image', this.state.image[0]);
         formData.append('street', this.state.street);
         formData.append('city', this.state.city);
         formData.append('state', this.state.state);
-        formData.append('zipcode', this.state.zipcode);       
+        formData.append('zipcode', this.state.zipcode);
+        if (Date.now() >= this.props.user.exp * 1000) {
+            this.props.refreshToken()
+        } else {   
+            const access = localStorage.getItem('access');    
             axios.post('http://127.0.0.1:8000/api/profiles/', formData, { headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + access}});
             axios.post('http://127.0.0.1:8000/api/favorite_sports/', {sport: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
             axios.post('http://127.0.0.1:8000/api/skill_levels/', {level: this.state.skillLevel, sport: this.state.sportId}, { headers: {Authorization: 'Bearer ' + access}});
-        
+
+            window.location = "/";
+        }
     };
 
     handleChangeInt = (event) => {

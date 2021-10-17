@@ -5,9 +5,13 @@ function EventTable (props) {
 
     const handleClick = async (event) => {
         console.log("clicked")
-        console.log("event", event)
+        console.log("event", event)  
+        if (Date.now() >= props.user.exp * 1000) {
+                props.refreshToken()
+        } else {
         const access = localStorage.getItem('access');
         await axios.post('http://127.0.0.1:8000/api/attending_athletes/', {sports_event: event}, { headers: {Authorization: 'Bearer ' + access}})
+        }
     }
 
     
