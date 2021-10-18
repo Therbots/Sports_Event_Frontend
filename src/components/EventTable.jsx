@@ -21,6 +21,7 @@ function EventTable (props) {
                 <thead>
                     <tr>
                         <th>Event Name</th>
+                        <th>Sport</th>
                         <th>Date and Time</th>
                         <th>Location</th>
                         <th>Number of Desired Players</th>
@@ -33,6 +34,7 @@ function EventTable (props) {
                     {props.events.map((item =>
                         <tr key={item.id}>
                             <td>{item.name}</td>
+                            <td>{item.sport.name}</td>
                             <td>{item.date_time}</td>
                             <td>{item.location}</td>
                             <td>{item.number_of_players}</td>

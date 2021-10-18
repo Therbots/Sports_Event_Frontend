@@ -31,7 +31,7 @@ class SearchEvents extends Component {
         } else {
         const {events, searchField} = this.state
         const filteredEvents = events.filter((value) => {
-            return value.name.toLowerCase().includes(searchField) || value.location.toLowerCase().includes(searchField) || value.skill_level.toLowerCase().includes(searchField) || value.competitiveness_level.toLowerCase().includes(searchField)
+            return value.name.toLowerCase().includes(searchField) || value.location.toLowerCase().includes(searchField) || value.skill_level.toLowerCase().includes(searchField) || value.competitiveness_level.toLowerCase().includes(searchField) || value.sport.name.toLowerCase().includes(searchField)
         })
         return ( 
             <React.Fragment>

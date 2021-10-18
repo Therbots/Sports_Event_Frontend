@@ -1,24 +1,23 @@
 import React from 'react';
-import CreateMessageBoard from './CreateMessageBoard';
-import './UserEvents.css'
-import axios from 'axios';
 
+function RecomendedEvents (props) {
 
-function UserEvents (props) {
+    const recE = props.events.map((item => {
+        return item.sport.name;
+    }));
+    console.log("PE", recE[0])
+    const fav =props.favSport[0].sport.name;
 
-    const handleClick = async (event) => {
-        console.log("clicked")
-        console.log("event", event)  
-        const access = localStorage.getItem('access');
-        await axios.post('http://127.0.0.1:8000/api/attending_athletes/', {sports_event: event}, { headers: {Authorization: 'Bearer ' + access}})
-        
-    }
-
+    if (fav !== recE[0]) {
+        return (
+            <h2>No Recomended Events</h2>
+        )
+    } else {
     return (
         <div>
         <table>
             <thead>
-                <h2>Your Events</h2>
+                <h2>Recomended Events</h2>
             </thead>
             <tbody>
                     {props.events.map((item =>
@@ -35,14 +34,13 @@ function UserEvents (props) {
                             <td>{item.skill_level}</td>
                             <h3>Competitiveness Level</h3>
                             <td>{item.competitiveness_level}</td>
-                            <button type="button" className="btn btn-secondary">Create Message Board</button>
-                            <button type="button" className="btn btn-secondary">Delete Event</button>
                         </tr>
                         ))}
                 </tbody>
         </table>
         </div>
     )
+    }
 }
 
-export default UserEvents;
+export default RecomendedEvents;

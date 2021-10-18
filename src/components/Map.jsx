@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 
 
 const mapStyles = {
-  width: '600px',
+  width: '400px',
   height: '400px',
   padding: '5px'
 };
@@ -85,9 +85,9 @@ export class MapContainer extends Component {
 
     //   )
     // } else {
-      // let profile = this.props.profile[0]
-      // let myLat = profile.lat;
-      // let myLng = profile.lng;
+      let profile = this.props.profile[0]
+      let myLat = profile.lat;
+      let myLng = profile.lng;
       // console.log("DD", this.state.eventMarkers)
       
     return(
@@ -99,8 +99,8 @@ export class MapContainer extends Component {
         style={mapStyles}
         initialCenter={
           {
-            lat: this.props.profile[0].lat,
-            lng: this.props.profile[0].lng
+            lat: myLat,
+            lng: myLng
           }
         }
         >
@@ -109,7 +109,7 @@ export class MapContainer extends Component {
               onClick={this.onMarkerClick}
               position={{ lat: marker.event.lat, lng: marker.event.lng }}
               key={marker.event.id}
-              name={marker.event.name + "\n" + marker.event.date_time + "\n" + marker.distanceResponse.rows[0].elements[0].distance.text}
+              name={marker.event.name + "\n" + marker.event.sport.name + "\n" + marker.event.date_time + "\n" + marker.distanceResponse.rows[0].elements[0].distance.text}
               />
           ))}
         <Marker
