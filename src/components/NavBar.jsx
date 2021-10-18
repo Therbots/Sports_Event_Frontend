@@ -14,12 +14,12 @@ import { Link } from 'react-router-dom';
         if (this.props.user.user_id == null) {
             return (
 
-              <nav>
-                <ul > 
-                <h3> Welcome to Pick-up Game! </h3> 
-                <Link to='/registration'>  <li>  Register </li>   </Link> 
-
-                <Link to='/login' >  <li>  Login </li> </Link> 
+              <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <ul> 
+                <Link to='/registration' className="navbar-brand">  <li>  Register </li>   </Link> 
+                </ul>
+                <ul>
+                <Link to='/login' className="navbar-brand" >  <li>  Login </li> </Link> 
                 </ul> 
               </nav>              
             )
@@ -27,13 +27,21 @@ import { Link } from 'react-router-dom';
         } else {
         
             return (
-                <nav>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark"> 
                     <ul>
-                    <Link to='/createprofile' > <li> Create/Update Profile </li> </Link>
-                    <Link to='/home' >  <li> Home </li> </Link> 
-                    <Link to='/createevent' >  <li> Create Event </li> </Link>
-                    <Link to='/searchevents' >  <li> Search Events </li> </Link>
-                    <Link to='/' onClick={()=> this.handleLogout()}>  <li> Logout </li> </Link>
+                    <Link to='/home' className="navbar-brand" >  <li> Home </li> </Link> 
+                    </ul>
+                    <ul>
+                    <Link to='/createprofile' className="navbar-brand" > <li> Create Profile </li> </Link>
+                    </ul>
+                    <ul>                
+                    <Link to='/createevent' className="navbar-brand" >  <li> Create Event </li> </Link>
+                    </ul>
+                    <ul>
+                    <Link to='/searchevents' className="navbar-brand" >  <li> Search Events </li> </Link>
+                    </ul>
+                    <ul>
+                    <Link to='/' className="navbar-brand" onClick={()=> this.handleLogout()}>  <li> Logout </li> </Link>
                     </ul>
                 </nav>
             );

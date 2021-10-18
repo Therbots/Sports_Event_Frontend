@@ -64,10 +64,17 @@ class Home extends Component {
         return ( 
             <React.Fragment>
                     <Profile profile={this.state.profile}/>
-                    <Map profile={this.state.profile} events={this.state.events}/>
-                    <br>
-                    </br>
-                    <UserEvents events={this.state.userEvents} />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm">
+                                <h2>Events Near You</h2>
+                                <Map profile={this.state.profile} events={this.state.events}/>
+                            </div>
+                            <div className="col-sm">
+                                <UserEvents events={this.state.userEvents} />
+                            </div>
+                        </div>                 
+                    </div>        
             </React.Fragment>
          );
         }

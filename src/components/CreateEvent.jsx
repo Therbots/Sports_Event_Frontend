@@ -42,20 +42,28 @@ class CreateEvent extends Component {
 
     render() { 
         return ( 
-            <div className="container">
+            <div className="box">
                 <h1>Create Your Event</h1>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <label>Event Name</label>
+                    <label>Event Name: </label>
                     <input type="text" name="name"onChange={this.handleChange} />
-                    <label>Date and Time</label>
+                    <br>
+                    </br>
+                    <label>Date and Time:</label>
                     <input type="datetime-local" name="dateTime"onChange={this.handleChange} />
-                    <label>Location</label>
+                    <br>
+                    </br>
+                    <label>Location:</label>
                     <input type="text" placeholder="Enter street, city, state address" name="location"onChange={this.handleChange} />
-                    <label>Number of Players</label>
+                    <br>
+                    </br>
+                    <label>Number of Players:</label>
                     <input type="number" name="numberOfPlayers"onChange={this.handleChangeInt} />
+                    <br>
+                    </br>
                     <div>
-                        <label>Sport to Play</label>
-                    <select id="dropdown" name="sportId" onChange={this.handleChangeInt}>
+                        <label>Sport to Play:</label>
+                    <select id="dropdown" name="sportId" className="btn btn-secondary dropdown-toggel" onChange={this.handleChangeInt}>
                         <option>Choose a sport</option>
                         <option value="1">Basketball</option>
                         <option value="2">Football</option>
@@ -67,22 +75,22 @@ class CreateEvent extends Component {
                         <option value="8">Disc Golf</option>
                         <option value="9">Tennis</option>
                     </select>
-                        <label>Desired Skill Level</label>
-                    <select id="dropdown" name="skillLevel" onChange={this.handleChange}>
+                        <label>Desired Skill Level:</label>
+                    <select id="dropdown" name="skillLevel" className="btn btn-secondary dropdown-toggel" onChange={this.handleChange}>
                         <option>Choose a Skill Level</option>
                         <option value="Beginner">Beginner</option>
                         <option value="Intermediate">Intermediate</option>
                         <option value="Advance">Advance</option>
                     </select>
-                        <label>Desired Competitiveness Level</label>
-                    <select id="dropdown" name="competitivenessLevel" onChange={this.handleChange}>
+                        <label>Desired Competitiveness Level:</label>
+                    <select id="dropdown" name="competitivenessLevel" className="btn btn-secondary dropdown-toggel" onChange={this.handleChange}>
                         <option>Choose Competitiveness Level</option>
                         <option value="for fun">For Fun</option>
                         <option value="friendly">Friendly</option>
                         <option value="tough">Tough</option>
                     </select>
                     </div>        
-                    <button type="submit">Create Event</button>
+                    <button type="submit" className="btn btn-secondary">Create Event</button>
                 </form>
             </div>
          );

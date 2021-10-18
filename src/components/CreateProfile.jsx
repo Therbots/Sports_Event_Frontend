@@ -74,24 +74,36 @@ class CreateProfile extends Component {
         console.log("profile", this.state)
         console.log("props", this.props.user)
         return ( 
-            <div className="container">
+            <div className="box">
                 <h1>Create Your Profile</h1>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <label>Profile Name</label>
+                    <label>Profile Name:</label>
                     <input type="text" name="name"onChange={this.handleChange} />
-                    <label>Profile Image</label>
-                    <input type="file" accept="image/*" name="image"onChange={this.handleChangeImage} />
-                    <label>Street you live on</label>
+                    <br>
+                    </br>
+                    <label>Profile Image:</label>
+                    <input type="file"  accept="image/*" className="form-control" name="image"onChange={this.handleChangeImage} />
+                    <br>
+                    </br>
+                    <label>Street you live on:</label>
                     <input type="text" name="street"onChange={this.handleChange} />
-                    <label>City</label>
+                    <br>
+                    </br>
+                    <label>City:</label>
                     <input type="text" name="city"onChange={this.handleChange} />
-                    <label>State</label>
+                    <br>
+                    </br>
+                    <label>State:</label>
                     <input type="text" name="state"onChange={this.handleChange} />
-                    <label>Zipcode</label>
+                    <br>
+                    </br>
+                    <label>Zipcode:</label>
                     <input type="number" name="zipcode"onChange={this.handleChange} />
+                    <br>
+                    </br>
                     <div>
-                        <label>Favorite Sport</label>
-                    <select id="number" name="sportId" onChange={this.handleChangeInt}>
+                        <label>Favorite Sport:</label>
+                    <select id="number" name="sportId" className="btn btn-secondary dropdown-toggel" onChange={this.handleChangeInt}>
                         <option>Choose a sport</option>
                         <option value="1">Basketball</option>
                         <option value="2">Football</option>
@@ -103,15 +115,15 @@ class CreateProfile extends Component {
                         <option value="8">Disc Golf</option>
                         <option value="9">Tennis</option>
                     </select>
-                        <label>Skill Level</label>
-                    <select id="dropdown" name="skillLevel" onChange={this.handleChange}>
+                        <label>Skill Level:</label>
+                    <select id="dropdown" name="skillLevel" className="btn btn-secondary dropdown-toggel" onChange={this.handleChange}>
                         <option>Choose a Skill Level</option>
                         <option value="Beginner">Beginner</option>
                         <option value="Intermediate">Intermediate</option>
                         <option value="Advance">Advance</option>
                     </select>
                     </div>        
-                    <button type="submit">Create Profile</button>
+                    <button type="submit" className="btn btn-secondary">Create Profile</button>
                 </form>
             </div>
          );

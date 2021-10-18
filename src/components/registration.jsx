@@ -42,7 +42,7 @@ class RegisterUser extends Component {
         return(
             <React.Fragment>
             <center>
-            <form className="container" onSubmit={(event) => this.handleSubmit(event)}>
+            <form className="box" onSubmit={(event) => this.handleSubmit(event)}>
                 <label>First Name</label>
                 <input type="text" name="firstName"onChange={this.handleChange} value={this.state.firstName}/>
                 <label>Last Name</label>
@@ -53,7 +53,7 @@ class RegisterUser extends Component {
                 <input type="text" name="email"onChange={this.handleChange} value={this.state.email}/>
                 <label>Password</label>
                 <input type="text" name="password"onChange={this.handleChange} value={this.state.password}/>
-                <button type="submit">Register</button>
+                <button type="submit" className="btn btn-secondary">Register</button>
             </form>
             </center>
             </React.Fragment>

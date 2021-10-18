@@ -45,6 +45,17 @@ export default class App extends Component {
                 let response = axios.post('http://127.0.0.1:8000/api/auth/login/refresh/', {refresh: refresh})
                 localStorage.setItem('access', response.data.access)
                 console.log("refresh", response.data)
+                const jwt = localStorage.getItem('access');
+        try{
+        const user = jwt_decode(jwt);  
+            this.setState({
+              user: user
+              
+            });                     
+  
+                }catch {
+           
+         }
         }
 
  

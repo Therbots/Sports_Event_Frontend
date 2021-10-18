@@ -47,14 +47,14 @@ class Login extends Component {
         } else {
         return(
             <React.Fragment>
-            <form className="container" onSubmit={(event) => this.handleSubmit(event)}>
+            <form className="box" onSubmit={(event) => this.handleSubmit(event)}>
                
                 <label>User Name</label>
                 <input type="text" name="userName"onChange={this.handleChange} value={this.state.userName}/>
                 <label>Password</label>
                 <input type="text" name="password"onChange={this.handleChange} value={this.state.password}/>
                 
-                <button type="submit">Login</button>
+                <button type="submit" className="btn btn-secondary">Login</button>
             </form>
             </React.Fragment>
         );

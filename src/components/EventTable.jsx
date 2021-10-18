@@ -14,8 +14,6 @@ function EventTable (props) {
         }
     }
 
-    
-
     return (
          <div>   
             <center>
@@ -28,6 +26,7 @@ function EventTable (props) {
                         <th>Number of Desired Players</th>
                         <th>Desired Skill Level</th>
                         <th>Competitiveness Level</th>
+                        <th>Join Event</th>
                     </tr>
                 </thead>
                 <tbody>
