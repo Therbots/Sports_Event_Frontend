@@ -2,13 +2,23 @@ import React from 'react';
 
 function RecomendedEvents (props) {
 
-    const recE = props.events.map((item => {
+    const skillLvl = props.skill.map((item => {
+        return item.level
+    }))
+
+    const recS = props.events.map((item => {
         return item.sport.name;
     }));
-    console.log("PE", recE[0])
-    const fav =props.favSport[0].sport.name;
 
-    if (fav !== recE[0]) {
+    const recSL = props.events.map((item => {
+        return item.skill_level;
+    }));
+
+    const fav = props.favSport.map((item => {
+        return item.sport.name
+    }))
+
+    if (fav[0] !== recS[0] && skillLvl[0] !== recSL[0]) {
         return (
             <h2>No Recomended Events</h2>
         )

@@ -45,16 +45,22 @@ export class MapContainer extends Component {
 
   async distance () {
     const google = window.google;
-    let profile = this.props.profile[0];
-    let myLat = profile.lat;
-    let myLng = profile.lng;
+    // let profile = this.props.profile[0];
+    // let myLat = profile.lat;
+    // let myLng = profile.lng;
+    const myLat = this.props.profile.map((item => {
+      return item.lat;
+    }))
+    const myLng = this.props.profile.map((item => {
+      return item.lng
+    }))
     let service = new google.maps.DistanceMatrixService();
     console.log('Props Events', this.props.events)
     let eventMarkers = []
      this.props.events.map((singleEvent) => {
       service.getDistanceMatrix(
         {
-          origins: [{lat: myLat, lng: myLng}],
+          origins: [{lat: myLat[0], lng: myLng[0]}],
           destinations: [{lat: singleEvent.lat, lng: singleEvent.lng}],
           travelMode: 'DRIVING',
           unitSystem: google.maps.UnitSystem.IMPERIAL,
@@ -85,10 +91,19 @@ export class MapContainer extends Component {
 
     //   )
     // } else {
-      let profile = this.props.profile[0]
-      let myLat = profile.lat;
-      let myLng = profile.lng;
+      // let profile = this.props.profile[0]
+      // let myLat = profile.lat;
+      // let myLng = profile.lng;
       // console.log("DD", this.state.eventMarkers)
+
+      const myLat = this.props.profile.map((item => {
+        return item.lat;
+      }))
+
+      const myLng = this.props.profile.map((item => {
+        return item.lng
+      }))
+      console.log("LL", myLat, myLng)
       
     return(
       <div>
@@ -99,8 +114,8 @@ export class MapContainer extends Component {
         style={mapStyles}
         initialCenter={
           {
-            lat: myLat,
-            lng: myLng
+            lat: myLat[0],
+            lng: myLng[0]
           }
         }
         >
