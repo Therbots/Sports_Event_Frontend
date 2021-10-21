@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function RecomendedEvents (props) {
+
+    const [recSport, setRecSport] = useState([])
 
     const skillLvl = props.skill.map((item => {
         return item.level
     }))
 
-    const recS = props.events.map((item => {
+    const fav = props.favSport.map((item => {
         return item.sport.name;
-    }));
+    }))
+
+        const favSports = [];
+        const recS = props.events.map((item => { 
+            if (item.sport.name === fav[0]) {
+                let customObject = {
+                    'recEvents': item
+                }
+                favSports.push(customObject)
+            }
+            console.log(favSports)
+        }));
 
     const recSL = props.events.map((item => {
         return item.skill_level;
     }));
 
-    const fav = props.favSport.map((item => {
-        return item.sport.name
-    }))
-
-    if (fav[0] !== recS[0] && skillLvl[0] !== recSL[0]) {
+    
+    console.log("fav", favSports)
+    if (favSports.length === 0) {
         return (
-            <h2>No Recomended Events</h2>
+            <p>There're no Recomended Sports Events</p>
         )
     } else {
     return (
@@ -30,7 +41,7 @@ function RecomendedEvents (props) {
                 <h2>Recomended Events</h2>
             </thead>
             <tbody>
-                    {props.events.map((item =>
+                    {favSports.map((item =>
                         <tr key={item.id} className="box">
                             <h3>Event Name</h3>
                             <td>{item.name}</td>

@@ -15,7 +15,7 @@ export default class LandingPage extends Component{
             }else{
                 return(
                     <center>
-                        <h3> Welcome to Up Next </h3>
+                        <h3> Welcome to Got Next </h3>
                         <img src="https://media.bleacherreport.com/f_auto,w_630,h_420,q_auto,c_fill/br-img-images/002/161/955/Jordan_dunk_original_original_original_crop_exact_crop_north.jpeg" />
                     </center>
     
