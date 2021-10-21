@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 function RecomendedEvents (props) {
 
-    const [recSport, setRecSport] = useState([])
-
     const skillLvl = props.skill.map((item => {
         return item.level
     }))
@@ -12,21 +10,16 @@ function RecomendedEvents (props) {
         return item.sport.name;
     }))
 
-        const favSports = [];
-        const recS = props.events.map((item => { 
-            if (item.sport.name === fav[0]) {
-                let customObject = {
-                    'recEvents': item
-                }
-                favSports.push(customObject)
+    const favSports = [];
+    const recS = props.events.map((item => { 
+        if (item.sport.name === fav[0]) {
+            let customObject = {
+                'recEvents': item
             }
-            console.log(favSports)
-        }));
-
-    const recSL = props.events.map((item => {
-        return item.skill_level;
+            favSports.push(customObject)
+        }
+        console.log(favSports)
     }));
-
     
     console.log("fav", favSports)
     if (favSports.length === 0) {
