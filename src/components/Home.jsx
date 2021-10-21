@@ -25,6 +25,7 @@ class Home extends Component {
         this.getFavoriteSport()
         this.getSkillLevel()
     }
+    
 
         getUserEvents = async () => {
             
